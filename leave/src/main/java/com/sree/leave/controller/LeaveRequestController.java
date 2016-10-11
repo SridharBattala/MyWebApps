@@ -1,20 +1,36 @@
 package com.sree.leave.controller;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.sree.leave.model.LeaveRequest;
-@Named
+import com.sree.leave.service.LeaveRequestService;
+import com.sree.leave.service.impl.LeaveRequestServiceImpl;
+@Component
 @Path("/api/v1/leave")
 public class LeaveRequestController {
+    @Autowired
+    private  LeaveRequestService leaveRequestService;
     @GET
-    @Path("/{userId}"+"/leaveRequests")
-    @Produces("application/json")
-public Response getLeaveRequests(){
-    return Response.ok().entity(new LeaveRequest()).build();
+    @Path("/{userId}"+"/leaveRequestList")
+    @Produces(MediaType.APPLICATION_JSON)
+    
+public Response getLeaveRequestList(@PathParam("userId") String userId){
+    return Response.ok().entity(leaveRequestService.getLeaveRequestList(userId)).build();
     
 }
+    /*
+    public LeaveRequestController(LeaveRequestService leaveRequestService) {
+        
+        this.leaveRequestService = leaveRequestService;
+    }*/
 }
