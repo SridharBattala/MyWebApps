@@ -1,1 +1,1 @@
-This is a simple leave application which will be used by employee of a orgonization
+This is a simple leave application which will be used by employee of an orgonization
