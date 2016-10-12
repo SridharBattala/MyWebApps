@@ -15,11 +15,17 @@ import org.springframework.stereotype.Component;
 import com.sree.leave.model.LeaveRequest;
 import com.sree.leave.service.LeaveRequestService;
 import com.sree.leave.service.impl.LeaveRequestServiceImpl;
-@Component
+@Named
+//@Component
 @Path("/api/v1/leave")
 public class LeaveRequestController {
-    @Autowired
-    private  LeaveRequestService leaveRequestService;
+    //@Autowired
+    private  final LeaveRequestService leaveRequestService;
+    @Inject
+    public LeaveRequestController(LeaveRequestService leaveRequestService) {
+        
+        this.leaveRequestService = leaveRequestService;
+    }
     @GET
     @Path("/{userId}"+"/leaveRequestList")
     @Produces(MediaType.APPLICATION_JSON)
@@ -28,9 +34,5 @@ public Response getLeaveRequestList(@PathParam("userId") String userId){
     return Response.ok().entity(leaveRequestService.getLeaveRequestList(userId)).build();
     
 }
-    /*
-    public LeaveRequestController(LeaveRequestService leaveRequestService) {
-        
-        this.leaveRequestService = leaveRequestService;
-    }*/
+    
 }

@@ -14,15 +14,16 @@ import com.mongodb.client.FindIterable;
 import com.sree.leave.dao.LeaveRequestDAO;
 import com.sree.leave.model.LeaveRequest;
 import com.sree.leave.service.LeaveRequestService;
-@Component
+@Named
 public class LeaveRequestServiceImpl implements LeaveRequestService{
-   /* @Inject
+    private  final LeaveRequestDAO leaveRequestDAO;
+
+    @Inject
 public LeaveRequestServiceImpl(LeaveRequestDAO leaveRequestDAO) {
         
         this.leaveRequestDAO = leaveRequestDAO;
-    }*/
-@Autowired
-private  LeaveRequestDAO leaveRequestDAO;
+    }
+
 @Override
 public List<LeaveRequest> getLeaveRequestList(String userId){
     List<LeaveRequest> leaveRequestList=new ArrayList<>();
