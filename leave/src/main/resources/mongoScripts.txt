@@ -1,0 +1,2 @@
+db.leaveRequest.insert({"id":1,"fromDate":new ISODate(),"toDate":new ISODate(),"requestorName":"sridhar","requestorId":"3090","approverId":"3091",
+  "approverName":"sumit", "reason":"personal work","active":true})
