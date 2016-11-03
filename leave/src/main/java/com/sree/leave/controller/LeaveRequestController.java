@@ -16,10 +16,8 @@ import com.sree.leave.model.LeaveRequest;
 import com.sree.leave.service.LeaveRequestService;
 import com.sree.leave.service.impl.LeaveRequestServiceImpl;
 @Named
-//@Component
 @Path("/api/v1/leave")
 public class LeaveRequestController {
-    //@Autowired
     private  final LeaveRequestService leaveRequestService;
     @Inject
     public LeaveRequestController(LeaveRequestService leaveRequestService) {

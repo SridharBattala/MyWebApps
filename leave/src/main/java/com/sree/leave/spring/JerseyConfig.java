@@ -1,13 +1,13 @@
 package com.sree.leave.spring;
 
 import javax.inject.Named;
+import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
 import com.sree.leave.controller.LeaveRequestController;
-import com.sree.leave.service.LeaveRequestService;
-import com.sree.leave.service.impl.LeaveRequestServiceImpl;
 @Named
+//@ApplicationPath("/api")
 public class JerseyConfig extends ResourceConfig{
 
     public JerseyConfig() {
