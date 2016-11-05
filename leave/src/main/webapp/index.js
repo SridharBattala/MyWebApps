@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
     
-        $("div").load("/html/leaveRequestInbox.html");
+	$("#leaveRequestInboxDiv").load("/html/leaveRequestInbox.html");
         
         getLeaveRequestList();
 });
