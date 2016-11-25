@@ -15,4 +15,10 @@ public interface LeaveRequestService {
 
     LeaveRequest createLeaveRequest(LeaveRequest leaveRequest) throws LeaveServiceException;
 
+    LeaveRequest getLeaveRequest(Long id) throws LeaveServiceException;
+
+    LeaveRequest updateLeaveRequest(LeaveRequest leaveRequest) throws LeaveServiceException;
+
+    void deleteLeaveRequest(Long leaveRequestId) throws LeaveServiceException;
+
 }

@@ -4,20 +4,20 @@ package com.sree.leave.model;
 
 
 public class LeaveRequest {
-    Double id;
-    Long fromDate;
-    Long toDate;
-    String requestorName;
-    String requestorId;
-    String approverId;
-    String approverName;
-    String reason;
+    private Long id;
+    private Long fromDate;
+    private Long toDate;
+    private String requestorName;
+    private String requestorId;
+    private String approverId;
+    private String approverName;
+    private String reason;
 
-    public Double getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final Double id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 

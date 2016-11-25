@@ -21,10 +21,10 @@ public class LeaveBaseException extends Exception{
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
-    public String getErroCode(){
+    public String getErrorCode(){
         return this.errorCode;
     }
-    public String getErroMessage(){
+    public String getErrorMessage(){
         return this.errorMessage;
     }
 }

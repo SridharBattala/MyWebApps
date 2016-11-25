@@ -49,7 +49,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
             final FindIterable<Document> docs = leaveRequestDAO.getLeaveRequestList(userId, GET_LEAVE_REQUEST_LIST_PROJECTION);
             for (final Document d : docs) {
                 final LeaveRequest leaveRequest = new LeaveRequest();
-                leaveRequest.setId((Double)d.get("id"));
+                leaveRequest.setId((Long)d.get("id"));
                 leaveRequest.setApproverId((String)d.get("approverId"));
                 leaveRequest.setApproverName((String)d.get("approverName"));
                 leaveRequest.setRequestorName((String)d.get("requestorName"));
@@ -70,5 +70,23 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     public LeaveRequest createLeaveRequest(LeaveRequest leaveRequest) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public LeaveRequest getLeaveRequest(Long id) throws LeaveServiceException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public LeaveRequest updateLeaveRequest(LeaveRequest leaveRequest) throws LeaveServiceException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void deleteLeaveRequest(Long leaveRequestId) throws LeaveServiceException {
+        // TODO Auto-generated method stub
+        
     }
 }
