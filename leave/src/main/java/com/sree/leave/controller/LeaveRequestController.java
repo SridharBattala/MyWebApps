@@ -26,8 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sree.leave.dao.impl.LeaveRequestDAOImpl;
-import com.sree.leave.exception.LeaveBaseException;
-import com.sree.leave.exception.LeaveError;
 import com.sree.leave.exception.LeaveServiceException;
 import com.sree.leave.model.LeaveRequest;
 import com.sree.leave.service.LeaveRequestService;
@@ -50,10 +48,7 @@ public class LeaveRequestController extends BaseController{
         try{
             List<LeaveRequest> leaveRequestList=leaveRequestService.getLeaveRequestList(userId);
             if(leaveRequestList.isEmpty()) {
-                LeaveError leaveError=new LeaveError();
-                leaveError.setErrorCode("Leave.101");
-                leaveError.setErrorMessage("No Leave request found for the user");
-                return Response.status(Status.NOT_FOUND).entity(leaveError).build();
+                return handleNotFoundError("Leave.101", "No Leave request found for the user");
             } else {
                 return Response.ok().entity(leaveRequestList).build();
             }
@@ -73,10 +68,7 @@ public class LeaveRequestController extends BaseController{
         try{
             //TO-DO need to handle for other parameters also
             if(leaveRequest.getRequestorId()!=null){
-                LeaveError leaveError=new LeaveError();
-                leaveError.setErrorCode("Leave.102");
-                leaveError.setErrorMessage("RequestorId can't be empty for creating new leave request");
-                return Response.status(Status.PRECONDITION_FAILED).entity(leaveError).build();
+                return handlePreConditionError("Leave.102", "RequestorId can't be empty for creating new leave request");         
             }
              leaveRequest=leaveRequestService.createLeaveRequest(leaveRequest);
              return Response.status(Status.CREATED).entity(leaveRequest).build();
@@ -96,17 +88,11 @@ public class LeaveRequestController extends BaseController{
         try{
             //TO-DO need to handle for other parameters also
             if(leaveRequestId==null){
-                LeaveError leaveError=new LeaveError();
-                leaveError.setErrorCode("Leave.102");
-                leaveError.setErrorMessage("Leave Request Id can't be empty for updating leave request");
-                return Response.status(Status.PRECONDITION_FAILED).entity(leaveError).build();
+                return handlePreConditionError("Leave.102", "Leave Request Id can't be empty for updating leave request");                
             }
             LeaveRequest leaveRequestOld=leaveRequestService.getLeaveRequest(leaveRequestId);
             if(leaveRequestOld==null) {
-                LeaveError leaveError=new LeaveError();
-                leaveError.setErrorCode("Leave.101");
-                leaveError.setErrorMessage("No Leave request found for the user");
-                return Response.status(Status.NOT_FOUND).entity(leaveError).build();
+                return handleNotFoundError("Leave.101", "No Leave request found for the user");
             }
             leaveRequest.setId(leaveRequestId);
              leaveRequest=leaveRequestService.updateLeaveRequest(leaveRequest);
@@ -127,11 +113,11 @@ public class LeaveRequestController extends BaseController{
         try{
             //TO-DO need to handle for other parameters also
             if(leaveRequestId==null){               
-                handleNotFoundError("Leave.101","Leave Request Id can't be empty for deleting leave request");
+                return handleNotFoundError("Leave.101","Leave Request Id can't be empty for deleting leave request");
             }
             LeaveRequest leaveRequestOld=leaveRequestService.getLeaveRequest(leaveRequest.getId());
             if(leaveRequestOld==null) {
-                handleNotFoundError("Leave.101","No Leave request found for the user");
+                return handleNotFoundError("Leave.101","No Leave request found for the user");
             }
              leaveRequestService.deleteLeaveRequest(leaveRequestId);
              return Response.status(Status.NO_CONTENT).build();

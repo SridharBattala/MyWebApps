@@ -7,6 +7,9 @@ import com.sree.leave.exception.LeaveError;
 import com.sree.leave.exception.LeaveServiceException;
 
 public class BaseController {
+    protected Response handlePreConditionError(String errorCode,String errorMessage){
+        return Response.status(Status.PRECONDITION_FAILED).entity(getLeaveErrorObj(errorCode,errorMessage)).build();
+        }
     protected Response handleServerError(LeaveServiceException e){
         return Response.status(Status.INTERNAL_SERVER_ERROR).entity(getLeaveErrorObj(e.getErrorCode(),e.getErrorMessage())).build();
         }
