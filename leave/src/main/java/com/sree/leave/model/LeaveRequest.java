@@ -4,7 +4,7 @@ package com.sree.leave.model;
 
 
 public class LeaveRequest {
-    private Long id;
+    private String id;
     private Long fromDate;
     private Long toDate;
     private String requestorName;
@@ -13,11 +13,11 @@ public class LeaveRequest {
     private String approverName;
     private String reason;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final String id) {
         this.id = id;
     }
 

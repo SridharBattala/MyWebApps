@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.UpdateOptions;
 import com.sree.leave.dao.LeaveRequestDAO;
 import com.sree.leave.exception.LeaveDaoException;
 
@@ -28,6 +29,16 @@ public class LeaveRequestDAOImpl extends BaseDAO implements LeaveRequestDAO {
             final Bson filter = and(eq("requestorId", userId), eq("active", true));
             final FindIterable<Document> leaveRequestDocs = getCollection("leaveRequest").find(filter).projection(projection);
             return leaveRequestDocs;
+        } catch(MongoException e){
+            LOGGER.error("Exception while getting leave request list",e);
+            throw new LeaveDaoException("Exception while getting leave request list",e);
+        }
+       
+    }
+    @Override
+    public void saveLeaveRequest(Bson filter,Document doc)  throws LeaveDaoException{
+        try{
+        	getCollection("leaveRequest").updateOne(filter, doc,new UpdateOptions().upsert(true));
         } catch(MongoException e){
             LOGGER.error("Exception while getting leave request list",e);
             throw new LeaveDaoException("Exception while getting leave request list",e);

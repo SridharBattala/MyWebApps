@@ -31,6 +31,7 @@ import com.sree.leave.model.LeaveRequest;
 import com.sree.leave.service.LeaveRequestService;
 
 @Named
+@Path("/leave")
 public class LeaveRequestController extends BaseController{
     private final LeaveRequestService leaveRequestService;
     private final static Logger LOGGER=LoggerFactory.getLogger(LeaveRequestDAOImpl.class);
@@ -84,7 +85,7 @@ public class LeaveRequestController extends BaseController{
     @Path( LEAVE_REQUEST+"/{"+LEAVE_REQUEST_ID+"}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response updateLeaveRequest(@PathParam("leaveRequestId") Long leaveRequestId,LeaveRequest leaveRequest) {
+    public Response updateLeaveRequest(@PathParam("leaveRequestId") String leaveRequestId,LeaveRequest leaveRequest) {
         try{
             //TO-DO need to handle for other parameters also
             if(leaveRequestId==null){
@@ -108,8 +109,7 @@ public class LeaveRequestController extends BaseController{
     @DELETE
     @Path( LEAVE_REQUEST+"/{"+LEAVE_REQUEST_ID+"}")
     @Produces(MediaType.APPLICATION_JSON)
-
-    public Response deleteLeaveRequest(@PathParam("leaveRequestId") Long leaveRequestId,LeaveRequest leaveRequest) {
+    public Response deleteLeaveRequest(@PathParam("leaveRequestId") String leaveRequestId,LeaveRequest leaveRequest) {
         try{
             //TO-DO need to handle for other parameters also
             if(leaveRequestId==null){               
