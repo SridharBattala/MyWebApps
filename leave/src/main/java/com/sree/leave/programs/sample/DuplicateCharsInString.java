@@ -1,4 +1,4 @@
-package com.sree.leave.programs;
+package com.sree.leave.programs.sample;
 
 import java.util.HashMap;
 import java.util.Map;

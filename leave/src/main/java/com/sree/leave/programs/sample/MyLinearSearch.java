@@ -1,4 +1,4 @@
-package com.sree.leave.programs;
+package com.sree.leave.programs.sample;
 
 public class MyLinearSearch {
 
