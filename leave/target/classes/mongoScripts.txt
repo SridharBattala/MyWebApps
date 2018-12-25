@@ -1,0 +1,8 @@
+db.leaveRequest.insert({"_id":"ss","fromDate":new ISODate(),"toDate":new ISODate(),"requestorName":"sridhar","requestorId":"3090","approverId":"3091",
+  "approverName":"sumit", "reason":"personal work","active":true})
+  
+  
+  Mongo help:
+  -------------
+  To create proper datatypes -->https://docs.mongodb.com/v3.2/core/shell-types/#types
+  
