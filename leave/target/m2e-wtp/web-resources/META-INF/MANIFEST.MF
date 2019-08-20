@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
+Built-By: sridharbattala
+Build-Jdk: 11.0.1
 Implementation-Title: leave
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: sridhar
 Implementation-Vendor-Id: com.sree
-Build-Jdk: 1.8.0_181
+Implementation-Vendor: Pivotal Software, Inc.
 Implementation-URL: http://projects.spring.io/spring-boot/leave/
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
 

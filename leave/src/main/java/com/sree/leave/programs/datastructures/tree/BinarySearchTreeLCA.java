@@ -1,4 +1,4 @@
-package com.sree.leave.programs.algorithms;
+package com.sree.leave.programs.datastructures.tree;
 
 public class BinarySearchTreeLCA {
 	public static Node lca(Node root, Node A, Node B) {
