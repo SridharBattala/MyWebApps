@@ -1,4 +1,4 @@
-package com.sree.leave.programs.algorithms;
+package com.sree.leave.programs.important;
 
 
 import java.util.Stack;

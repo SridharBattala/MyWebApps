@@ -21,7 +21,7 @@ static void printAllSubsetsRec(int arr[], int n, Vector<Integer> v,
 	} 
 
 	// If no remaining elements, 
-	if (n == arr.length) 
+	if (n == arr.length || sum > matchingSum) 
 		return; 
 
 	// We consider two cases for every element. 
@@ -41,6 +41,7 @@ public static void main(String args[])
 { 
 	int arr[] = { 1,3,4,5 }; 
 	int matchingSum = 8; 
+	int n = arr.length; 
 	Vector<Integer> v= new Vector<Integer>(); 
 	printAllSubsetsRec(arr, 0, v, 0,matchingSum); 
 	

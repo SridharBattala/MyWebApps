@@ -1,4 +1,4 @@
-package com.sree.leave.programs.algorithms;
+package com.sree.leave.programs.important;
 /*
  * https://www.geeksforgeeks.org/sort-elements-by-frequency/
  */

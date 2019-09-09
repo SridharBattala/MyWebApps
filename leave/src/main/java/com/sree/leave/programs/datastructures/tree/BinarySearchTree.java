@@ -1,6 +1,6 @@
 package com.sree.leave.programs.datastructures.tree;
 
-public class BinarySearchTreeLCA {
+public class BinarySearchTree {
 	public static Node lca(Node root, Node A, Node B) {
 		if (null == root) {
 			return root;
@@ -48,13 +48,13 @@ public class BinarySearchTreeLCA {
        G.left = J;
        G.right = K;
          
-		Node ancestor = BinarySearchTreeLCA.lca(A, J, K);
+		Node ancestor = BinarySearchTree.lca(A, J, K);
        System.out.printf("Ancestor of %d and %d is %dn",J.data,K.data,ancestor.data);
        
-		ancestor = BinarySearchTreeLCA.lca(A, J, G);
+		ancestor = BinarySearchTree.lca(A, J, G);
        System.out.printf("Ancestor of %d and %d is %dn",J.data,G.data,ancestor.data);
        
-		ancestor = BinarySearchTreeLCA.lca(A, E, G);
+		ancestor = BinarySearchTree.lca(A, E, G);
        System.out.printf("Ancestor of %d and %d is %dn",E.data,G.data,ancestor.data);
     }
 	static class Node {

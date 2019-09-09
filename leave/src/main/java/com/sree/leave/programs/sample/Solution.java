@@ -8,64 +8,123 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Solution {
+class Solution {
 
-    // Complete the matchingStrings function below.
-	static int[] matchingStrings(String[] strings, String[] queries) {
-		int[] output = new int[queries.length];
-		for (int i = 0; i < queries.length; i++) {
-			int count = 0;
-			for (int j = 0; j < strings.length; j++) {
-				if (queries[i].equals(strings[j])) {
-					count++;
-				}
-			}
-			output[i] = count;
+    private static final String TEXT =  "I am a {0} account with {1,number,#} units of {2} currency";
 
-		}
-		return output;
-	}
-
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        int stringsCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        String[] strings = new String[stringsCount];
-
-        for (int i = 0; i < stringsCount; i++) {
-            String stringsItem = scanner.nextLine();
-            strings[i] = stringsItem;
-        }
-
-        int queriesCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        String[] queries = new String[queriesCount];
-
-        for (int i = 0; i < queriesCount; i++) {
-            String queriesItem = scanner.nextLine();
-            queries[i] = queriesItem;
-        }
-
-        int[] res = matchingStrings(strings, queries);
-
-        for (int i = 0; i < res.length; i++) {
-            bufferedWriter.write(String.valueOf(res[i]));
-
-            if (i != res.length - 1) {
-                bufferedWriter.write("\n");
-            }
-        }
-
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
-        scanner.close();
+    public static void main(String args[] ) throws Exception {
+    	System.out.println(getExpectedCosts(Arrays.asList(1,2,3,4)).toString());
+    }
+    static List<Integer> getExpectedCosts(List<Integer> transactionCosts) {
+    	int oddCount=0;
+    	int oddIndex=-1;
+    	for(int i=0;i<transactionCosts.size(); i++) {
+    		if(transactionCosts.get(i)%2!=0) {
+    			oddCount=oddCount+1;
+    			oddIndex=i;
+    		}
+    	}
+    	if(oddCount==0) {
+    		return getList(0,-1,transactionCosts.size());
+    	}else if (oddCount==1) {
+    		return getList(0,oddIndex,transactionCosts.size());
+    	}else if (oddCount>1) {
+    		return getList(0,-1,transactionCosts.size());
+    	}
+return null;
+    }
+    static List<Integer>  getList(int value,int oddIndex,int listLength){
+    	List<Integer> list=new ArrayList<>();
+    	for(int i=0;i<listLength;i++) {
+    		if(i==oddIndex) {
+    			list.add(1);
+    		}else {
+        		list.add(value);
+    		}
+    		
+    	}
+    	return list;
     }
 }
 
+abstract class  BankAccount{
+	int units;
+	String currency;
+	String name;
+	public BankAccount( String currency,int units ) {
+		this.units = units;
+		this.currency = currency;
+	}
+	public BankAccount() {
+	}
+	public abstract BankAccount getAccountType();
+	public abstract String getName();
+	
+	
+	public String getCurrency() {
+		return String.valueOf(this.currency);
+		
+	}
+	
+	public int getUnits() {
+		return this.units;
+		
+	}
+}
+class SavingsAccount extends BankAccount{
+	
+	public SavingsAccount( String currency,int units ) {
+		super(currency,units);
+		this.units = units;
+		this.currency = currency;
+	}
+	public SavingsAccount() {
+	}
+	@Override
+	public SavingsAccount getAccountType() {
+		return new SavingsAccount();
+		
+	}
+	@Override
+	public String getName() {
+		return "Savings";
+		
+	}
+	
+	
+}
+class CheckingAccount extends BankAccount{
+	
+	public CheckingAccount( String currency,int units ) {
+		super(currency,units);
+		this.units = units;
+		this.currency = currency;
+	}
+	public CheckingAccount() {
+	}
+	public CheckingAccount getAccountType() {
+		return new CheckingAccount();
+		
+	}
+	public String getName() {
+		return "Checking";
+		
+	}
+}
+class BrokerageAccount extends BankAccount{
+	
+	public BrokerageAccount( String currency,int units ) {
+		super(currency,units);
+		this.units = units;
+		this.currency = currency;
+	}
+	public BrokerageAccount() {
+	}
+	public BrokerageAccount getAccountType() {
+		return new BrokerageAccount();
+		
+	}
+	public String getName() {
+		return "Brokerage";
+		
+}}
