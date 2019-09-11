@@ -12,7 +12,7 @@ public class CoinChangeProblem {
 	static void printAllSubsetsRec(int arr[], int n, Vector<Integer> v, 
 							int sum,int matchingSum) 
 	{ 
-		System.out.println("first= arr="+arr.toString()+", n="+n+", v="+v.toString()+", sum="+sum);
+		System.out.println("arr="+arr.toString()+", n="+n+", v="+v.toString()+", sum="+sum);
 		// If remaining sum is 0, then print all 
 		// elements of current subset. 
 		if (sum == matchingSum) { 
@@ -41,8 +41,8 @@ public class CoinChangeProblem {
 	//Driver code 
 	public static void main(String args[]) 
 	{ 
-		int arr[] = { 1,3,2 }; 
-		int matchingSum = 4; 
+		int arr[] = { 1,2 }; 
+		int matchingSum = 3; 
 		Vector<Integer> v= new Vector<Integer>(); 
 		printAllSubsetsRec(arr, 0, v, 0,matchingSum); 
 		

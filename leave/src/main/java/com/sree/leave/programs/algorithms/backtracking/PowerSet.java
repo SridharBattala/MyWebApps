@@ -14,7 +14,7 @@ static void powerSet(int[] arr, int index,
 		List<Integer> currArr) 
 	
 { 
-	System.out.println("first= arr="+Arrays.toString(arr)+", index="+index+", currArr="+currArr.toString());
+	System.out.println("arr="+Arrays.toString(arr)+", index="+index+", currArr="+currArr.toString());
 
 
 	// base case 

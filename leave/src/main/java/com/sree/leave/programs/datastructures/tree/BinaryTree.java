@@ -44,17 +44,26 @@ public class BinaryTree {
 	 * @return
 	 */
     public static Node lca(final Node root, final Node node1, final Node node2) {
-        if (null == root) {
+    	//System.out.println("ss");
+    	int rootData=root==null?0:root.data;
+    	int node1Data=node1==null?0:node1.data;
+    	int node2Data=node2==null?0:node2.data;
+    	System.out.println("root="+ rootData+", node1="+ node1Data+", node2="+ node2Data);
+
+    	//System.out.println("root="+ root==null?0:root.data+", node1="+ node1!=null?node1.data:0+", node2="+ node2!=null?node2.data:0);
+    	if (null == root) {
             return root;
         }
         if (root == node1 || root == node2) {
             return root;
         }
-        System.out.println(root.data);
         Node left = lca(root.left, node1, node2);
+        int leftData=left==null?0:left.data;
+        System.out.println("left="+ leftData);
 
-        System.out.println(root.data);
         Node right = lca(root.right, node1, node2);
+        int rightData=right==null?0:right.data;
+        System.out.println("right="+ rightData);
 
         if (left != null && right != null) {
             return root;
@@ -66,18 +75,19 @@ public class BinaryTree {
         }
     }
     
-    public int findDistance(final Node root, final Node n1, final Node n2) {
-		final int x = Pathlength(root, n1.data) - 1;
-		final int y = Pathlength(root, n2.data) - 1;
+    public static int findDistance(final Node root, final Node n1, final Node n2) {
+		final int x = pathlength(root, n1.data) - 1;
+		final int y = pathlength(root, n2.data) - 1;
 		final int lcaData = lca(root, n1, n2).data;
-		final int lcaDistance = Pathlength(root, lcaData) - 1;
+		final int lcaDistance = pathlength(root, lcaData) - 1;
+		System.out.println("x="+x+",y="+y+",lcaDistance="+lcaDistance);
 		return (x + y) - 2 * lcaDistance;
 	}
 
-	public int Pathlength(final Node root, final int n1) {
+	public static int pathlength(final Node root, final int n1) {
 		if (root != null) {
 			int x = 0;
-			if ((root.data == n1) || (x = Pathlength(root.left, n1)) > 0 || (x = Pathlength(root.right, n1)) > 0) {
+			if ((root.data == n1) || (x = pathlength(root.left, n1)) > 0 || (x = pathlength(root.right, n1)) > 0) {
 				// System.out.println(root.data);
 				return x + 1;
 			}
@@ -151,6 +161,7 @@ public class BinaryTree {
 
        //height
         System.out.println("height="+BinaryTree.heightOfTree(A));
+        System.out.println("distance="+BinaryTree.findDistance(A, D, H));
         //print path to root node
         path = new ArrayList();
 		printPath(A, H);

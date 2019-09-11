@@ -10,7 +10,7 @@ class PerfectSum
 static void printAllSubsetsRec(int arr[], int n, Vector<Integer> v, 
 						int sum,int matchingSum) 
 { 
-	System.out.println("first= arr="+arr.toString()+", n="+n+", v="+v.toString()+", sum="+sum);
+	System.out.println("arr="+Arrays.toString(arr)+", n="+n+", v="+v.toString()+", sum="+sum);
 	// If remaining sum is 0, then print all 
 	// elements of current subset. 
 	if (sum == matchingSum) { 
@@ -39,8 +39,8 @@ static void printAllSubsetsRec(int arr[], int n, Vector<Integer> v,
 //Driver code 
 public static void main(String args[]) 
 { 
-	int arr[] = { 1,3,4,5 }; 
-	int matchingSum = 8; 
+	int arr[] = { 1,2,3 }; 
+	int matchingSum = 4; 
 	int n = arr.length; 
 	Vector<Integer> v= new Vector<Integer>(); 
 	printAllSubsetsRec(arr, 0, v, 0,matchingSum); 
