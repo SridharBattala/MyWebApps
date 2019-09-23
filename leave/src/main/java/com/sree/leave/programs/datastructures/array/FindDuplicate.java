@@ -13,7 +13,8 @@ public class FindDuplicate {
 			count=count+arr[i];
 			
 		}
-		System.out.println(count-sum);
+		
+		System.out.println("length="+length+",sum="+sum+",count="+count+",duplicate="+(count-sum));
 	}
 
 }
