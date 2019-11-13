@@ -1,5 +1,9 @@
-package com.sree.leave.programs.sample;
-
+package com.sree.leave.programs.javaprogrames;
+/**
+ * https://www.java2novice.com/java-interview-programs/thread-deadlock/
+ * @author sridharbattala
+ *
+ */
 public class MyDeadlock {
 
 	String str1 = "Java";

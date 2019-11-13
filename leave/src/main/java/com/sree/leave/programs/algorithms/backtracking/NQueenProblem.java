@@ -1,130 +1,83 @@
 package com.sree.leave.programs.algorithms.backtracking;
+/**
+ * https://www.youtube.com/watch?v=xouin83ebxE&list=PLrmLmBdmIlpslxZUHHWmfOzNn6cA7jvyh&index=2
+ */
+
 
 import java.util.Arrays;
 
-public class NQueenProblem {
-	 
-	  
-	static int N = 4;  
-	static int k = 1; 
-	  
-	/* A utility function to print solution */
-	static void printSolution(int board[][])  
-	{  
-	    System.out.printf("%d-\n", k++);  
-	    for (int i = 0; i < N; i++)  
-	    {  
-	        for (int j = 0; j < N; j++)  
-	            System.out.printf(" %d ", board[i][j]);  
-	        System.out.printf("\n");  
-	    }  
-	    System.out.printf("\n");  
-	}  
-	  
-	/* A utility function to check if a queen can  
-	be placed on board[row][col]. Note that this  
-	function is called when "col" queens are  
-	already placed in columns from 0 to col -1.  
-	So we need to check only left side for  
-	attacking queens */
-	static boolean isSafe(int board[][], int row, int col)  
-	{  
-		System.out.println("isSafe= row="+row+", col="+col);
-		for (int j = 0; j < N; j++)  {
-			System.out.printf(Arrays.toString(board[j]));  
-	        System.out.printf("\n");
-		}
-            
+public class NQueenProblem
+{
+	// N x N chessboard
+	public static final int N = 4;
 
-	    int i, j;  
-	  
-	    /* Check this row on left side */
-	    for (i = 0; i < col; i++)  
-	        if (board[row][i] == 1)  
-	            return false;  
-	  
-	    /* Check upper diagonal on left side */
-	    for (i = row, j = col; i >= 0 && j >= 0; i--, j--)  
-	        if (board[i][j] == 1)  
-	            return false;  
-	  
-	    /* Check lower diagonal on left side */
-	    for (i = row, j = col; j >= 0 && i < N; i++, j--)  
-	        if (board[i][j] == 1)  
-	            return false;  
-	  
-	    return true;  
-	}  
-	  
-	/* A recursive utility function   
-	to solve N Queen problem */
-	static boolean solveNQUtil(int board[][], int col)  
-	{  
-		System.out.println("solveNQUtil=  col="+col);
-		for (int j = 0; j < N; j++)  {
-			System.out.printf(Arrays.toString(board[j]));  
-	        System.out.printf("\n");
+	// Function to check if two queens threaten each other or not
+	private static boolean isSafe(char mat[][], int r, int c)
+	{
+		// return false if two queens share the same column
+		for (int i = 0; i < r; i++)
+			if (mat[i][c] == 'Q')
+				return false;
+
+		// return false if two queens share the same \ diagonal
+		for (int i = r, j = c; i >= 0 && j >= 0; i--, j--)
+			if (mat[i][j] == 'Q')
+				return false;
+
+		// return false if two queens share the same / diagonal
+		for (int i = r, j = c; i >= 0 && j < N; i--, j++)
+			if (mat[i][j] == 'Q')
+				return false;
+
+		return true;
+	}
+
+	private static void nQueen(char mat[][], int r)
+	{
+		// if N queens are placed successfully, print the solution
+		if (r == N)
+		{
+			for (int i = 0; i < N; i++)
+			{
+				for (int j = 0; j < N; j++)
+					System.out.print(mat[i][j] + " ");
+				System.out.println();
+			}
+			System.out.println();
+
+			return;
 		}
-	    /* base case: If all queens are placed  
-	    then return true */
-	    if (col == N)  
-	    {  
-	        printSolution(board);  
-	        return true;  
-	    }  
-	  
-	    /* Consider this column and try placing  
-	    this queen in all rows one by one */
-	    boolean res = false;  
-	    for (int i = 0; i < N; i++)  
-	    {  
-	        /* Check if queen can be placed on  
-	        board[i][col] */
-	        if ( isSafe(board, i, col) )  
-	        {  
-	            /* Place this queen in board[i][col] */
-	            board[i][col] = 1;  
-	  
-	            // Make result true if any placement  
-	            // is possible  
-	            res = solveNQUtil(board, col + 1) || res;  
-	  
-	            /* If placing queen in board[i][col]  
-	            doesn't lead to a solution, then  
-	            remove queen from board[i][col] */
-	            board[i][col] = 0; // BACKTRACK  
-	        }  
-	    }  
-	  
-	    /* If queen can not be place in any row in  
-	        this column col then return false */
-	    return res;  
-	}  
-	  
-	/* This function solves the N Queen problem using  
-	Backtracking. It mainly uses solveNQUtil() to  
-	solve the problem. It returns false if queens  
-	cannot be placed, otherwise return true and  
-	prints placement of queens in the form of 1s.  
-	Please note that there may be more than one  
-	solutions, this function prints one of the  
-	feasible solutions.*/
-	static void solveNQ()  
-	{  
-	    int board[][] = new int[N][N];  
-	  
-	    if (solveNQUtil(board, 0) == false)  
-	    {  
-	        System.out.printf("Solution does not exist");  
-	        return ;  
-	    }  
-	  
-	    return ;  
-	}  
-	  
-	// Driver code  
-	public static void main(String[] args) 
-	{ 
-	    solveNQ(); 
+
+		// place Queen at every square in current row r
+		// and recur for each valid movement
+		for (int i = 0; i < N; i++)
+		{
+			// if no two queens threaten each other
+			if (isSafe(mat, r, i))
+			{
+				// place queen on current square
+				mat[r][i] = 'Q';
+
+				// recur for next row
+				nQueen(mat, r + 1);
+
+				// backtrack and remove queen from current square
+				mat[r][i] = '-';
+			}
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		// mat[][] keeps track of position of Queens in
+		// the current configuration
+		char[][] mat = new char[N][N];
+
+		// initialize mat[][] by '-'
+		for (int i = 0; i < N; i++) {
+			Arrays.fill(mat[i], '-');
+		}
+
+		nQueen(mat, 0);
 	}
 }
