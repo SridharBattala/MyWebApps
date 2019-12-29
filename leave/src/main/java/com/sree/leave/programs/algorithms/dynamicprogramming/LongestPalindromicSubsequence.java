@@ -1,10 +1,9 @@
 package com.sree.leave.programs.algorithms.dynamicprogramming;
 /**
- * Abdul ravi for formula
- * https://www.youtube.com/watch?v=vLS-zRCHo-Y
+ * check tushor roy vedio
  * @author sridharbattala
  *
  */
-public class OptimalBST {
+public class LongestPalindromicSubsequence {
 
 }

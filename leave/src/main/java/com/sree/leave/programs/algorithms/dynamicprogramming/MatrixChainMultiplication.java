@@ -1,5 +1,8 @@
 package com.sree.leave.programs.algorithms.dynamicprogramming;
-/*
+/**
+ * Abdul ravi for formula
+ * https://www.youtube.com/watch?v=prx1psByp7U
+ * 
  * https://www.youtube.com/watch?v=vgLJZMUfnsU&list=PLrmLmBdmIlpsHaNTPP_jHHDx_os9ItYXr&index=3
  * 
  * https://www.techiedelight.com/matrix-chain-multiplication/
